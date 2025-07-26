@@ -1,0 +1,222 @@
+/* --- General & Variables --- */
+:root {
+    --bg-color: #F9F6F2;
+    --text-color: #212121;
+    --gray-color: #BDBDBD;
+    --primary-font: 'Poppins', sans-serif;
+}
+* {
+    user-select: none;
+}
+body {
+    margin: 0;
+    font-family: var(--primary-font);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    overflow-x: hidden;
+}
+
+h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* --- Hero Section --- */
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 5rem;
+}
+
+.phone-mockup {
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.phone-mockup img {
+    max-width: 280px;
+    height: auto;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+    transition: transform 0.1s ease-out, filter 0.3s ease-out;
+    transform-style: preserve-3d;
+    transform: rotateY(0) rotateX(0) scale(1);
+    will-change: transform;
+}
+
+.phone-mockup.hovering img {
+    filter: drop-shadow(20px 25px 30px rgba(0,0,0,0.2));
+    transform: scale(1.05);
+}
+
+.hero-content {
+    max-width: 500px;
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    padding: 0.8rem 2.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 1rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* --- Core Mechanics Section --- */
+.mechanics {
+    padding: 4rem 0;
+}
+
+.mechanics h2 {
+    margin-bottom: 6rem;
+}
+
+.mechanics-flow {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    height: 900px; /* Height for mobile layout */
+    margin: 0 auto;
+}
+
+.flow-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+@keyframes dashOffset {
+    from {
+        stroke-dashoffset: 10;
+    }
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+.flow-lines path {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.flow-lines.animate-lines path {
+    opacity: 1;
+    animation: dashOffset 1.5s linear infinite;
+}
+
+.flow-step {
+    position: absolute;
+    background: var(--bg-color);
+    padding: 1.5rem 1rem 0.5rem;
+    font-size: 1rem;
+    z-index: 2;
+    max-width: 150px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.flow-step::before {
+    content: attr(data-step);
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    border-radius: 50%;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* Default mobile positions for flow steps */
+#step-1 { top: 0%; left: 50%; transform: translateX(-50%); }
+#step-2 { top: 20%; left: 75%; transform: translateX(-50%); }
+#step-3 { top: 40%; left: 25%; transform: translateX(-50%); }
+#step-4 { top: 65%; left: 65%; transform: translateX(-50%); }
+#step-5 { top: 85%; left: 35%; transform: translateX(-50%); }
+
+/* --- Desktop & Tablet Media Query --- */
+@media (min-width: 768px) {
+    h1 {
+        font-size: 3.2rem;
+    }
+    
+    .hero {
+        flex-direction: row;
+        text-align: left;
+        gap: 3rem;
+        padding: 4rem 0;
+    }
+
+    .phone-mockup {
+        flex: 1;
+        order: 1;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .phone-mockup {
+        perspective: 1500px;
+    }
+
+    .phone-mockup img {
+        max-width: 320px;
+    }
+    
+    .phone-mockup.hovering img {
+        filter: drop-shadow(35px 35px 40px rgba(0,0,0,0.25));
+        transform: translateZ(50px) scale(1.08);
+    }
+
+    .hero-content {
+        flex: 1.2;
+        order: 2;
+    }
+    
+    .mechanics-flow {
+        height: 500px; /* Adjusted height for desktop */
+    }
+
+    .flow-step {
+        font-size: 1rem;
+    }
+    
+    /* Desktop positions for flow steps in star formation */
+    #step-1 { top: 5%; left: 50%; transform: translate(-50%, -50%); }
+    #step-2 { top: 35%; left: 90%; transform: translate(-50%, -50%); }
+    #step-3 { top: 85%; left: 75%; transform: translate(-50%, -50%); }
+    #step-4 { top: 85%; left: 25%; transform: translate(-50%, -50%); }
+    #step-5 { top: 35%; left: 10%; transform: translate(-50%, -50%); }
+}
