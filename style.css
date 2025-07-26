@@ -47,13 +47,34 @@ h2 {
 }
 
 .phone-mockup {
-    perspective: 1000px;
-    cursor: pointer;
+    position: relative;
+    width: 280px;
+    perspective: 1000px; /* For 3D effect */
+    margin: 2rem auto;
+    animation: breathing 5s ease-in-out infinite; /* Added breathing animation */
+}
+
+.phone-mockup img {
+    width: 100%;
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1); /* Added for floaty effect */
+}
+
+@keyframes breathing {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
 }
 
 .phone-mockup img {
     max-width: 280px;
     height: auto;
+    border: 11px solid #33312f;
+
     filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
     transition: transform 0.1s ease-out, filter 0.3s ease-out;
     transform-style: preserve-3d;
@@ -167,6 +188,127 @@ h2 {
 #step-4 { top: 65%; left: 65%; transform: translateX(-50%); }
 #step-5 { top: 85%; left: 35%; transform: translateX(-50%); }
 
+/* --- Neural Mesh Section --- */
+.neural-mesh-section {
+    padding: 4rem 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin-top: 5rem;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.neural-mesh-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+.ai-dialog {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 2;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.mesh-container {
+    flex: 1;
+    border-radius: 24px;
+    padding: 1.5rem;
+    position: relative;
+}
+
+.mesh-container::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    border: 1px solid rgba(33, 33, 33, 0.08);
+    pointer-events: none;
+}
+
+#neural-mesh-canvas {
+    width: 100%;
+    height: 300px;
+    display: block;
+    margin: 0 auto;
+    opacity: 0.85;
+}
+
+.dialog-container {
+    flex: 1;
+    background: linear-gradient(135deg, rgba(33, 33, 33, 0.02) 0%, rgba(33, 33, 33, 0.05) 100%);
+    border: 1px solid rgba(33, 33, 33, 0.08);
+    border-radius: 24px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 20px 40px -12px rgba(33, 33, 33, 0.05),
+        0 0 1px rgba(33, 33, 33, 0.15);
+}
+
+.dialog-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.2) 25%, 
+        rgba(255, 255, 255, 0.2) 75%, 
+        transparent 100%);
+}
+
+.system-title {
+    font-family: var(--primary-font);
+    font-size: 0.9rem;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+    opacity: 0.7;
+    font-weight: 600;
+}
+
+.terminal-text {
+    font-family: var(--primary-font);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.cursor {
+    display: inline-block;
+    width: 3px;
+    height: 1.2em;
+    background-color: var(--text-color);
+    margin-left: 4px;
+    animation: blink 1s infinite;
+    vertical-align: middle;
+    opacity: 0.7;
+}
+
 /* --- Desktop & Tablet Media Query --- */
 @media (min-width: 768px) {
     h1 {
@@ -213,10 +355,40 @@ h2 {
         font-size: 1rem;
     }
     
+    .ai-dialog {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    #neural-mesh-canvas {
+        height: 400px;
+    }
+
+    .mesh-container {
+        flex: 0.8;
+    }
+
+    .dialog-container {
+        flex: 1.2;
+        height: 400px;
+        display: flex;
+        flex-direction: column;
+    }
+    
     /* Desktop positions for flow steps in star formation */
     #step-1 { top: 5%; left: 50%; transform: translate(-50%, -50%); }
     #step-2 { top: 35%; left: 90%; transform: translate(-50%, -50%); }
     #step-3 { top: 85%; left: 75%; transform: translate(-50%, -50%); }
     #step-4 { top: 85%; left: 25%; transform: translate(-50%, -50%); }
     #step-5 { top: 35%; left: 10%; transform: translate(-50%, -50%); }
+}
+
+#system-dialog .typing-cursor {
+    display: inline-block;
+    background-color: #212121;
+    width: 12px; /* A 'fat' cursor */
+    height: 1.5rem; /* Adjust to match line-height */
+    margin-left: 5px;
+    animation: blink 0.8s steps(1, end) infinite;
+    vertical-align: middle; /* Align with the text */
 }
