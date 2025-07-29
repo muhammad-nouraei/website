@@ -677,7 +677,7 @@ h2 {
     margin-top: 1.2rem;
 }
 
-.github-link, .discord-link {
+.github-link, .discord-link,.instagram-link {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
@@ -690,7 +690,7 @@ h2 {
     transition: all 0.2s ease;
 }
 
-.github-link:hover, .discord-link:hover {
+.github-link:hover, .discord-link:hover ,.instagram-link:hover{
     background: rgba(33, 33, 33, 0.08);
 }
 
