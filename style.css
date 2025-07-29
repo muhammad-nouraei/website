@@ -309,6 +309,98 @@ h2 {
     opacity: 0.7;
 }
 
+/* --- Download Dialog --- */
+.download-dialog {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(33, 33, 33, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.download-dialog.active {
+    display: flex;
+}
+
+.dialog-content {
+    background: var(--bg-color);
+    padding: 2rem;
+    border-radius: 16px;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.platform-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.platform-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-color);
+    padding: 1rem;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+    text-align: center;
+}
+
+.platform-option:hover {
+    background-color: rgba(33, 33, 33, 0.05);
+}
+
+.platform-option img {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 0.5rem;
+}
+
+.platform-option.preregister {
+    opacity: 0.7;
+}
+
+.platform-option.preregister::after {
+    content: '(Pre - Register)';
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+    opacity: 0.7;
+}
+
+.close-dialog {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-color);
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.close-dialog:hover {
+    opacity: 1;
+}
+
+.dialog-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
 /* --- Desktop & Tablet Media Query --- */
 @media (min-width: 768px) {
     h1 {

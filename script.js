@@ -1,4 +1,25 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Download Dialog Functionality
+    const downloadButton = document.querySelector('.cta-button');
+    const downloadDialog = document.querySelector('.download-dialog');
+    const closeDialogButton = document.querySelector('.close-dialog');
+
+    downloadButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        downloadDialog.classList.add('active');
+    });
+
+    closeDialogButton.addEventListener('click', () => {
+        downloadDialog.classList.remove('active');
+    });
+
+    // Close dialog when clicking outside
+    downloadDialog.addEventListener('click', (e) => {
+        if (e.target === downloadDialog) {
+            downloadDialog.classList.remove('active');
+        }
+    });
+
     const svg = document.querySelector('.flow-lines');
     const steps = document.querySelectorAll('.flow-step');
     const flowContainer = document.querySelector('.mechanics-flow');
