@@ -35,6 +35,126 @@ h2 {
     text-align: center;
 }
 
+/* --- Navigation --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    position: relative; /* Added for positioning the mobile menu */
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    margin-left: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: #888;
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-color);
+    transition: all 0.3s ease-in-out;
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: flex;
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 70%;
+        background: rgba(249, 246, 242, 0.8); /* Using your bg-color but with transparency */
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        padding: 1rem 1.5rem;
+        margin: 0;
+        border-radius: 20px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .nav-links li {
+        margin: 0;
+        position: relative;
+    }
+
+    .nav-links a {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+        opacity: 0.7;
+        transition: all 0.2s ease;
+    }
+
+    .nav-links a:hover {
+        opacity: 1;
+    }
+
+    .nav-links a.active {
+        opacity: 1;
+        font-weight: 700;
+    }
+
+    .nav-links a.active::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: var(--text-color);
+        border-radius: 2px;
+    }
+
+    .hamburger {
+        display: none; /* Hide hamburger as we don't need it anymore */
+    }
+
+    .logo {
+        display: none;
+    }
+
+    .navbar {
+        justify-content: center;
+    }
+}
+
 /* --- Hero Section --- */
 .hero {
     display: flex;
@@ -373,7 +493,282 @@ h2 {
     cursor: not-allowed;
 }
 
-/* --- Desktop & Tablet Media Query --- */
+/* --- Download Dialog --- */
+.download-dialog {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(33, 33, 33, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.download-dialog.active {
+    display: flex;
+}
+
+.dialog-content {
+    background: var(--bg-color);
+    padding: 2rem;
+    border-radius: 16px;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.platform-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.platform-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-color);
+    padding: 1rem;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+    text-align: center;
+}
+
+.platform-option:hover {
+    background-color: rgba(33, 33, 33, 0.05);
+}
+
+.platform-option img {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 0.5rem;
+}
+
+.platform-option.preregister {
+    opacity: 0.7;
+}
+
+.platform-option.preregister::after {
+    content: '(Pre - Register)';
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+    opacity: 0.7;
+}
+
+.close-dialog {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-color);
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.close-dialog:hover {
+    opacity: 1;
+}
+
+.dialog-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+/* --- About Page Styles --- */
+.about-hero {
+    padding: 6rem 0;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.about-hero h1 {
+    margin-bottom: 2rem;
+}
+
+.about-hero p {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    opacity: 0.9;
+}
+
+.team-section {
+    padding: 4rem 0;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.team-member {
+    background: var(--bg-color);
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-member:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+.team-member img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 1.5rem;
+    object-fit: cover;
+}
+
+.team-member h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+}
+
+.team-member p.role {
+    color: var(--text-color);
+    opacity: 0.7;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.team-member p.bio {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-color);
+    opacity: 0.9;
+}
+
+.mission-section {
+    padding: 6rem 0;
+}
+
+.mission-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+.mission-card {
+    background: linear-gradient(135deg, rgba(33, 33, 33, 0.02) 0%, rgba(33, 33, 33, 0.05) 100%);
+    border-radius: 24px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.mission-card h3 {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+.mission-card h3::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background-color: var(--text-color);
+    border-radius: 2px;
+}
+
+.mission-card p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--text-color);
+    opacity: 0.9;
+}
+
+/* --- Features Page Styles --- */
+.features-hero {
+    text-align: center;
+    padding: 4rem 0;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.features-hero p {
+    font-size: 1.2rem;
+    color: #666;
+    margin-top: 1rem;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+    margin: 2rem 0;
+}
+
+.feature-card {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+}
+
+
+.community-links {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 1.2rem;
+}
+
+.github-link, .discord-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    background: rgba(33, 33, 33, 0.03);
+    border-radius: 20px;
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.github-link:hover, .discord-link:hover {
+    background: rgba(33, 33, 33, 0.08);
+}
+
+.github-link img, .discord-link img {
+    width: 20px;
+    height: 20px;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+
+.github-link:hover img, .discord-link:hover img {
+    opacity: 1;
+}
+
 @media (min-width: 768px) {
     h1 {
         font-size: 3.2rem;
@@ -383,7 +778,6 @@ h2 {
         flex-direction: row;
         text-align: left;
         gap: 3rem;
-        padding: 4rem 0;
     }
 
     .phone-mockup {
@@ -398,7 +792,7 @@ h2 {
     }
 
     .phone-mockup img {
-        max-width: 320px;
+        max-width: 240px;
     }
     
     .phone-mockup.hovering img {
@@ -409,6 +803,7 @@ h2 {
     .hero-content {
         flex: 1.2;
         order: 2;
+    
     }
     
     .mechanics-flow {
@@ -445,6 +840,83 @@ h2 {
     #step-3 { top: 85%; left: 75%; transform: translate(-50%, -50%); }
     #step-4 { top: 85%; left: 25%; transform: translate(-50%, -50%); }
     #step-5 { top: 35%; left: 10%; transform: translate(-50%, -50%); }
+    
+    .mission-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .about-hero {
+        padding: 8rem 0;
+    }
+    
+    .about-hero p {
+        font-size: 1.4rem;
+    }
+}
+
+/* --- Terms Page Styles --- */
+.terms-content {
+    background: #fff;
+    border-radius: 18px;
+    padding: 2rem;
+    margin: 3rem auto;
+    color: #212121;
+    line-height: 1.8;
+}
+.terms-content h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+.terms-content h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: #33312f;
+    border-left: 4px solid #BDBDBD;
+    padding-left: 0.7rem;
+}
+.terms-content p {
+    font-size: 1.05rem;
+    margin-bottom: 1.2rem;
+    opacity: 0.95;
+}
+.terms-content ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1.2rem;
+    padding-left: 1.2rem;
+}
+.terms-content li {
+    font-size: 1rem;
+    margin-bottom: 0.7rem;
+    opacity: 0.92;
+}
+.terms-content em {
+    color: #BDBDBD;
+    font-style: italic;
+}
+.terms-content a {
+    color: #212121;
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+.terms-content a:hover {
+    color: #888;
+}
+@media (max-width: 768px) {
+    .terms-content {
+        padding: 2rem;
+        margin: 1.5rem 0.2rem;
+    }
+    .terms-content h1 {
+        font-size: 1.4rem;
+    }
+    .terms-content h2 {
+        font-size: 1.1rem;
+        padding-left: 0.4rem;
+    }
 }
 
 @media (max-width: 768px) {
