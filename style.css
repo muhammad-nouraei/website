@@ -35,6 +35,126 @@ h2 {
     text-align: center;
 }
 
+/* --- Navigation --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    position: relative; /* Added for positioning the mobile menu */
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    margin-left: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: #888;
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-color);
+    transition: all 0.3s ease-in-out;
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: flex;
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 70%;
+        background: rgba(249, 246, 242, 0.8); /* Using your bg-color but with transparency */
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        padding: 1rem 1.5rem;
+        margin: 0;
+        border-radius: 20px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .nav-links li {
+        margin: 0;
+        position: relative;
+    }
+
+    .nav-links a {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+        opacity: 0.7;
+        transition: all 0.2s ease;
+    }
+
+    .nav-links a:hover {
+        opacity: 1;
+    }
+
+    .nav-links a.active {
+        opacity: 1;
+        font-weight: 700;
+    }
+
+    .nav-links a.active::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: var(--text-color);
+        border-radius: 2px;
+    }
+
+    .hamburger {
+        display: none; /* Hide hamburger as we don't need it anymore */
+    }
+
+    .logo {
+        display: none;
+    }
+
+    .navbar {
+        justify-content: center;
+    }
+}
+
 /* --- Hero Section --- */
 .hero {
     display: flex;
@@ -594,7 +714,6 @@ h2 {
         flex-direction: row;
         text-align: left;
         gap: 3rem;
-        padding: 4rem 0;
     }
 
     .phone-mockup {
@@ -609,7 +728,7 @@ h2 {
     }
 
     .phone-mockup img {
-        max-width: 320px;
+        max-width: 240px;
     }
     
     .phone-mockup.hovering img {
@@ -620,6 +739,7 @@ h2 {
     .hero-content {
         flex: 1.2;
         order: 2;
+    
     }
     
     .mechanics-flow {
@@ -667,6 +787,71 @@ h2 {
     
     .about-hero p {
         font-size: 1.4rem;
+    }
+}
+
+/* --- Terms Page Styles --- */
+.terms-content {
+    background: #fff;
+    border-radius: 18px;
+    padding: 2rem;
+    margin: 3rem auto;
+    color: #212121;
+    line-height: 1.8;
+}
+.terms-content h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+.terms-content h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: #33312f;
+    border-left: 4px solid #BDBDBD;
+    padding-left: 0.7rem;
+}
+.terms-content p {
+    font-size: 1.05rem;
+    margin-bottom: 1.2rem;
+    opacity: 0.95;
+}
+.terms-content ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1.2rem;
+    padding-left: 1.2rem;
+}
+.terms-content li {
+    font-size: 1rem;
+    margin-bottom: 0.7rem;
+    opacity: 0.92;
+}
+.terms-content em {
+    color: #BDBDBD;
+    font-style: italic;
+}
+.terms-content a {
+    color: #212121;
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+.terms-content a:hover {
+    color: #888;
+}
+@media (max-width: 768px) {
+    .terms-content {
+        padding: 2rem;
+        margin: 1.5rem 0.2rem;
+    }
+    .terms-content h1 {
+        font-size: 1.4rem;
+    }
+    .terms-content h2 {
+        font-size: 1.1rem;
+        padding-left: 0.4rem;
     }
 }
 
