@@ -293,20 +293,84 @@ h2 {
     color: var(--text-color);
 }
 
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
+.cursor {
+    width: 10px;
+    height: 20px;
+    background-color: #00ff00;
+    animation: blink 1s step-end infinite;
 }
 
-.cursor {
-    display: inline-block;
-    width: 3px;
-    height: 1.2em;
-    background-color: var(--text-color);
-    margin-left: 4px;
-    animation: blink 1s infinite;
-    vertical-align: middle;
-    opacity: 0.7;
+@keyframes blink {
+    from, to {
+        background-color: transparent;
+    }
+    50% {
+        background-color: #00ff00;
+    }
+}
+
+/* --- Download Dialog --- */
+.dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.dialog-box {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid var(--gray-color);
+    text-align: center;
+    position: relative;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.platform-options {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.platform-option {
+    text-align: center;
+}
+
+.platform-option img, .platform-option svg {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+    fill: var(--text-color);
+}
+
+.platform-option h3 {
+    margin-bottom: 15px;
+    color: var(--text-color);
+}
+
+.pre-register {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
 }
 
 /* --- Desktop & Tablet Media Query --- */
@@ -381,6 +445,76 @@ h2 {
     #step-3 { top: 85%; left: 75%; transform: translate(-50%, -50%); }
     #step-4 { top: 85%; left: 25%; transform: translate(-50%, -50%); }
     #step-5 { top: 35%; left: 10%; transform: translate(-50%, -50%); }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+        margin-top: 1rem;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .mechanics-flow {
+        height: auto;
+        padding-bottom: 2rem;
+    }
+
+    .flow-step {
+        position: static;
+        width: 80%;
+        margin: 1.5rem auto;
+        text-align: center;
+    }
+
+    .flow-lines {
+        display: none;
+    }
+
+    .neural-mesh-section {
+        padding: 2rem 0;
+    }
+
+    .ai-dialog {
+        flex-direction: column;
+    }
+
+    .mesh-container {
+        width: 100%;
+        height: 200px;
+        margin-bottom: 2rem;
+    }
+
+    .dialog-container {
+        width: 100%;
+        height: auto;
+    }
+
+    .platform-options {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .platform-option {
+        margin-bottom: 2rem;
+    }
+
+    .dialog-box {
+        width: 90%;
+        height: 70%;
+        padding: 20px;
+    }
+    .desktop_option {
+        visibility: hidden;
+    }
+
+    .close-button {
+        top: 10px;
+        right: 10px;
+        font-size: 30px;
+    }
 }
 
 #system-dialog .typing-cursor {

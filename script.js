@@ -404,4 +404,24 @@ document.addEventListener('DOMContentLoaded', function() {
     if (systemDialog) {
         dialogObserver.observe(systemDialog);
     }
+
+    // Download Dialog Logic
+    const downloadButton = document.getElementById('download-button');
+    const downloadDialog = document.getElementById('download-dialog');
+    const closeButton = document.querySelector('.close-button');
+
+    downloadButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        downloadDialog.style.display = 'flex';
+    });
+
+    closeButton.addEventListener('click', () => {
+        downloadDialog.style.display = 'none';
+    });
+
+    window.addEventListener('click', (e) => {
+        if (e.target === downloadDialog) {
+            downloadDialog.style.display = 'none';
+        }
+    });
 });
