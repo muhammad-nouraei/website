@@ -401,7 +401,190 @@ h2 {
     text-align: center;
 }
 
-/* --- Desktop & Tablet Media Query --- */
+/* --- About Page Styles --- */
+.about-hero {
+    padding: 6rem 0;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.about-hero h1 {
+    margin-bottom: 2rem;
+}
+
+.about-hero p {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    opacity: 0.9;
+}
+
+.team-section {
+    padding: 4rem 0;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.team-member {
+    background: var(--bg-color);
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-member:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+.team-member img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 1.5rem;
+    object-fit: cover;
+}
+
+.team-member h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+}
+
+.team-member p.role {
+    color: var(--text-color);
+    opacity: 0.7;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.team-member p.bio {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-color);
+    opacity: 0.9;
+}
+
+.mission-section {
+    padding: 6rem 0;
+}
+
+.mission-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+.mission-card {
+    background: linear-gradient(135deg, rgba(33, 33, 33, 0.02) 0%, rgba(33, 33, 33, 0.05) 100%);
+    border-radius: 24px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.mission-card h3 {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+.mission-card h3::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background-color: var(--text-color);
+    border-radius: 2px;
+}
+
+.mission-card p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--text-color);
+    opacity: 0.9;
+}
+
+/* --- Features Page Styles --- */
+.features-hero {
+    text-align: center;
+    padding: 4rem 0;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.features-hero p {
+    font-size: 1.2rem;
+    color: #666;
+    margin-top: 1rem;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+    margin: 2rem 0;
+}
+
+.feature-card {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+}
+
+
+.community-links {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 1.2rem;
+}
+
+.github-link, .discord-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    background: rgba(33, 33, 33, 0.03);
+    border-radius: 20px;
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.github-link:hover, .discord-link:hover {
+    background: rgba(33, 33, 33, 0.08);
+}
+
+.github-link img, .discord-link img {
+    width: 20px;
+    height: 20px;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+
+.github-link:hover img, .discord-link:hover img {
+    opacity: 1;
+}
+
 @media (min-width: 768px) {
     h1 {
         font-size: 3.2rem;
@@ -473,6 +656,18 @@ h2 {
     #step-3 { top: 85%; left: 75%; transform: translate(-50%, -50%); }
     #step-4 { top: 85%; left: 25%; transform: translate(-50%, -50%); }
     #step-5 { top: 35%; left: 10%; transform: translate(-50%, -50%); }
+    
+    .mission-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .about-hero {
+        padding: 8rem 0;
+    }
+    
+    .about-hero p {
+        font-size: 1.4rem;
+    }
 }
 
 #system-dialog .typing-cursor {
