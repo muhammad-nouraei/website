@@ -551,7 +551,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 "Distractive apps remain locked",
                 "Visit Gym",
                 "Snap a pic",
-                "Ai verifies",
+                "Ai verifies the pics",
                 "get coins"
             ]
         },
@@ -631,4 +631,135 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     initializeSlider();
+
+    // Screenshots Data
+    const screenshots = [
+        {
+            title: "Custom Themes",
+            type: "image",
+            image: "assets/screenshots/sakura.png",
+            description: "btw the sakura tree here grows together with your streak. if you break the streak, it will wither and die :("
+        },
+        {
+            title: "Ai Snap",
+            type: "video",
+            url: "assets/screenshots/early_wake.mp4",
+            description: "This quest requires you to wake up early and snap a pic of the morning sky. AI verifies the pic to ensure authenticity."
+        },
+        {
+            title: "Deep Focus",
+            type: "image",
+            image: "assets/screenshots/deep_focus.gif",
+            description: "Block access to your entire device except selected apps until quest over  (sped up video)"
+        },
+        {
+            title: "Health Quest",
+            type: "image",
+            image: "assets/screenshots/steps_quest.png",
+            description: "QP uses your device's health data to verify tasks like steps, distance covered, calorie burned, sleep and hydration."
+        },
+        {
+            title: "Hacker Theme",
+            type: "image",
+            image: "assets/screenshots/hacker.gif",
+            description: "matrix ahh animation"
+        },
+        {
+            title: "Cool Animations",
+            type: "image",
+            image: "assets/screenshots/streak.gif",
+            description: "fire"
+        },
+        {
+            title: "Templates",
+            type: "image",
+            image: "assets/screenshots/templates.png",
+            description: "Quickly add quests using pre-made templates"
+        },
+        {
+            title: "Personalized Notifications",
+            type: "image",
+            image: "assets/screenshots/reminders.png",
+            description: "Get personalized notifications from our on device AI assistant to keep you motivated"
+        },
+        {
+            title: "Markdown Support",
+            type: "video",
+            url: "assets/screenshots/md_editor.mp4",
+            description: "Write rich text descriptions for your quests using markdown"
+        },
+        
+    ];
+
+    // Screenshots Slider
+    function initializeScreenshotsSlider() {
+        const screenshotTitle = document.getElementById('screenshot-title');
+        const screenshotImage = document.getElementById('screenshot-image');
+        const screenshotVideo = document.getElementById('screenshot-video');
+        const screenshotDescription = document.getElementById('screenshot-description');
+        const screenshotItem = document.querySelector('.screenshot-item');
+        const prevBtn = document.querySelector('.screenshots-slider .prev-btn');
+        const nextBtn = document.querySelector('.screenshots-slider .next-btn');
+        let currentScreenshot = 0;
+
+        function updateScreenshots() {
+            screenshotItem.style.opacity = '0';
+            setTimeout(() => {
+                const screenshot = screenshots[currentScreenshot];
+                screenshotTitle.textContent = screenshot.title;
+                
+                // Handle both video and image content
+                if (screenshot.type === 'video') {
+                    screenshotImage.style.display = 'none';
+                    screenshotVideo.style.display = 'block';
+                    screenshotVideo.src = screenshot.url;
+                    if (screenshot.poster) {
+                        screenshotVideo.poster = screenshot.poster;
+                    }
+                } else {
+                    screenshotImage.style.display = 'block';
+                    screenshotVideo.style.display = 'none';
+                    screenshotImage.src = screenshot.image;
+                }
+                
+                screenshotDescription.textContent = screenshot.description;
+                screenshotItem.style.opacity = '1';
+            }, 300);
+        }
+
+        function nextScreenshot() {
+            currentScreenshot = (currentScreenshot + 1) % screenshots.length;
+            updateScreenshots();
+        }
+
+        function prevScreenshot() {
+            currentScreenshot = (currentScreenshot - 1 + screenshots.length) % screenshots.length;
+            updateScreenshots();
+        }
+
+        // Touch support for screenshots
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.querySelector('.screenshots-content').addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.querySelector('.screenshots-content').addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchStartX - touchEndX > 50) {
+                nextScreenshot();
+            } else if (touchEndX - touchStartX > 50) {
+                prevScreenshot();
+            }
+        });
+
+        // Button click handlers
+        if (prevBtn) prevBtn.addEventListener('click', prevScreenshot);
+        if (nextBtn) nextBtn.addEventListener('click', nextScreenshot);
+    }
+
+    // Initialize both sliders
+    initializeSlider();
+    initializeScreenshotsSlider();
 });
