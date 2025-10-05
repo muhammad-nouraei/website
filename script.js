@@ -425,4 +425,210 @@ document.addEventListener('DOMContentLoaded', function() {
     if (systemDialog) {
         dialogObserver.observe(systemDialog);
     }
+
+    // Slider Functionality
+    function initializeSlider() {
+        const slider = document.querySelector('.quests-slider');
+        const slides = document.querySelectorAll('.quest-slide');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        let currentSlide = 0;
+
+        function updateSlides() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                }
+            });
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Redraw flow lines for the current slide
+            const currentSvg = slides[currentSlide].querySelector('.flow-lines');
+            if (currentSvg) {
+                currentSvg.classList.remove('animate-lines');
+                setTimeout(() => {
+                    currentSvg.classList.add('animate-lines');
+                }, 50);
+            }
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateSlides();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            updateSlides();
+        }
+
+        // Touch support
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        slider.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        slider.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchStartX - touchEndX > 50) {
+                nextSlide();
+            } else if (touchEndX - touchStartX > 50) {
+                prevSlide();
+            }
+        });
+
+        // Button click handlers
+        if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+        if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+
+        // Keyboard support
+        document.addEventListener('keydown', e => {
+            if (e.key === 'ArrowLeft') prevSlide();
+            if (e.key === 'ArrowRight') nextSlide();
+        });
+    }
+
+    initializeSlider();
+
+    // Quest Slider Data
+    const quests = [
+        {
+            title: "Touch Grass Everyday",
+            steps: [
+                "Distractive apps remain locked",
+                "Go out and touch grass",
+                "Snap a pic ",
+                "AI checks pics",
+                "Unlock apps for a while"
+            ]
+        },
+        {
+            title: "Run 3km everyday",
+            steps: [
+                "Distractive apps remain locked",
+                "You run 3km",
+                "QP connects to your device sensors",
+                "Checks if quest completed",
+                "Unlock apps for a while"
+            ]
+        },
+        {
+            title: "Study for 25 minutes",
+            steps: [
+                "Distractive apps remain locked",
+                "Start quest",
+                "Non-study apps stay locked",
+                "get coins after 25 minutes",
+                "Unlock apps for a while"
+            ]
+        },
+        {
+            title: "Pomodoro",
+            steps: [
+                "Distractive apps remain locked",
+                "Start quest",
+                "Pomodoro Starts",
+                "get coins every cycle",
+                "Unlock apps for a while"
+            ]
+        },
+        {
+            title: "Burn 7700 kcal",
+            steps: [
+                "Distractive apps remain locked",
+                "Perform Exercises",
+                "QP connects to your device sensors",
+                "verification happens",
+                "get coins"
+            ]
+        },
+        {
+            title: "Go Gym",
+            steps: [
+                "Distractive apps remain locked",
+                "Visit Gym",
+                "Snap a pic",
+                "Ai verifies",
+                "get coins"
+            ]
+        },
+        {
+            title: "Drawing",
+            steps: [
+                "Distractive apps remain locked",
+                "Draw",
+                "Snap a pic",
+                "Ai verifies",
+                "Unlock apps for a while"
+            ]
+        },
+    ];
+
+    function initializeSlider() {
+        let currentQuest = 0;
+        const questTitle = document.getElementById('quest-title');
+        const steps = document.querySelectorAll('.flow-step');
+        const questContent = document.querySelector('.quest-content');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        const svg = document.querySelector('.flow-lines');
+
+        function updateQuest() {
+            questContent.style.opacity = '0';
+            setTimeout(() => {
+                const quest = quests[currentQuest];
+                questTitle.textContent = `${quest.title}`;
+                steps.forEach((step, index) => {
+                    step.textContent = quest.steps[index];
+                });
+                questContent.style.opacity = '1';
+                
+                // Restart flow lines animation
+                svg.classList.remove('animate-lines');
+                setTimeout(() => svg.classList.add('animate-lines'), 50);
+            }, 300);
+        }
+
+        function nextQuest() {
+            currentQuest = (currentQuest + 1) % quests.length;
+            updateQuest();
+        }
+
+        function prevQuest() {
+            currentQuest = (currentQuest - 1 + quests.length) % quests.length;
+            updateQuest();
+        }
+
+        // Touch support
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.querySelector('.slider-container').addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.querySelector('.slider-container').addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchStartX - touchEndX > 50) {
+                nextQuest();
+            } else if (touchEndX - touchStartX > 50) {
+                prevQuest();
+            }
+        });
+
+        // Button click handlers
+        prevBtn.addEventListener('click', prevQuest);
+        nextBtn.addEventListener('click', nextQuest);
+
+        // Keyboard support
+        document.addEventListener('keydown', e => {
+            if (e.key === 'ArrowLeft') prevQuest();
+            if (e.key === 'ArrowRight') nextQuest();
+        });
+    }
+
+    initializeSlider();
 });

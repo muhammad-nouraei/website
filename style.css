@@ -231,17 +231,17 @@ h2 {
 /* --- Core Mechanics Section --- */
 .mechanics {
     padding: 4rem 0;
+    height: 70vh;
 }
 
 .mechanics h2 {
-    margin-bottom: 6rem;
+    margin-bottom: 3rem;
 }
-
 .mechanics-flow {
     position: relative;
     width: 100%;
     max-width: 700px;
-    height: 900px; /* Height for mobile layout */
+    height: 50vh; /* Height for mobile layout */
     margin: 0 auto;
 }
 
@@ -302,11 +302,21 @@ h2 {
 }
 
 /* Default mobile positions for flow steps */
-#step-1 { top: 0%; left: 50%; transform: translateX(-50%); }
-#step-2 { top: 20%; left: 75%; transform: translateX(-50%); }
-#step-3 { top: 40%; left: 25%; transform: translateX(-50%); }
-#step-4 { top: 65%; left: 65%; transform: translateX(-50%); }
-#step-5 { top: 85%; left: 35%; transform: translateX(-50%); }
+#step-1 { top: 0%; left: 50%; transform: translateX(-50%);
+    font-size: 0.9rem;
+ }
+#step-2 { top: 20%; left: 75%; transform: translateX(-50%);
+    font-size: 0.9rem;
+ }
+#step-3 { top: 40%; left: 25%; transform: translateX(-50%); 
+    font-size: 0.9rem;
+}
+#step-4 { top: 65%; left: 65%; transform: translateX(-50%);
+    font-size: 0.9rem;
+ }
+#step-5 { top: 85%; left: 35%; transform: translateX(-50%);
+    font-size: 0.9rem;
+ }
 
 /* --- Neural Mesh Section --- */
 .neural-mesh-section {
@@ -863,4 +873,55 @@ h2 {
     margin-left: 5px;
     animation: blink 0.8s steps(1, end) infinite;
     vertical-align: middle; /* Align with the text */
+}
+
+/* --- Slider Styles --- */
+.slider-container {
+    position: relative;
+    width: 100%;
+}
+
+.quest-content {
+    transition: opacity 0.3s ease-out;
+}
+
+.slider-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: var(--text-color);
+    color: var(--bg-color);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.3;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.slider-nav:hover {
+    opacity: 0.5;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.prev-btn {
+    left: 10px;
+}
+
+.next-btn {
+    right: 10px;
+}
+
+@media (max-width: 768px) {
+    .slider-nav {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
 }
