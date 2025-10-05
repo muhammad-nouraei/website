@@ -929,6 +929,7 @@ h2 {
 /* --- Screenshots Section --- */
 .screenshots {
     padding: 4rem 0;
+    margin-top: 5rem;
 }
 
 .screenshots-slider {
