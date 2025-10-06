@@ -68,10 +68,14 @@
     For progress tracking, we may store **only the dates** when you complete a task (e.g., "Hydration goal completed on July 1"). We do **not store or retain** the raw health data itself (e.g., exact number of steps or calories).
     You have full control over Health Connect access and can revoke permissions anytime via system settings.
   </li>
-
-  <li><strong>Camera:</strong>  
-    Required for the <em>AI Snap</em> feature, which verifies real-world physical tasks (like push-ups or cleaning your room) using image recognition. Photos are processed either locally or securely on-device, and are never shared or retained — unless explicitly needed for challenge verification or abuse prevention. Users are notified when the camera is active.
-  </li>
+<li><strong>Camera:</strong>  
+Required for the <em>AI Snap</em> feature, which verifies real-world physical tasks (like push-ups or cleaning your room) using image recognition.  
+When you take a verification photo, it is **temporarily uploaded to a secure cloud server** for AI analysis.  
+- The image is **not stored**, **not linked** to your identity, and **automatically deleted** right after processing.  
+- No human reviews or manual checks occur.  
+- The AI model only analyzes task-related content and does not collect or infer any personal information.  
+Users are clearly notified whenever the camera or upload process is active.
+</li>
 
   <li><strong>Notification Access:</strong>  
     Allows QuestPhone to send motivational reminders, challenge alerts, and status updates — even when you're using other apps. This helps reinforce habit-building and keep you informed without requiring constant app interaction.
@@ -84,6 +88,9 @@
   <li><strong>Query All Packages:</strong>  
     This permission allows QuestPhone to display a full list of apps installed on your device. It's required to let you choose which apps you want to lock, monitor, or associate with challenges. This permission is necessary for launcher functionality, and the app list is used locally only.
   </li>
+  <p>Some features may temporarily process data through secure cloud servers strictly for functionality (e.g., AI-based task verification). 
+No uploaded content is stored, sold, or shared, and all temporary data is deleted immediately after use.</p>
+
 </ul>
 
 <p><strong>Important:</strong> No data collected by QuestPhone is sold, rented, or shared with advertisers or third parties. All permissions are solely used to power in-app features that the user explicitly activates.</p>
